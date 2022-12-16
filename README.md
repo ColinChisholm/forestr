@@ -8,7 +8,7 @@ Operational and Strategic Forest Planning tools.
 `remotes::install_github("cchisholm/Forest-Management-Tools")`
 
 
-##Documentation 
+## Documentation 
 _pending_
 
 ***
