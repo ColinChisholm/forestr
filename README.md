@@ -37,7 +37,7 @@ These tools are highly dependent on the [`bcdata` package](https://github.com/bc
 - `fm_collect_basemap()`  -- Collects essential data from the BC Data Center (BCDC) including:  water and transportation features. Also provides a QGIS map 
 - `fm_collect_forest_layers()` -- Collects BCDC forest management layers (e.g. historical RESULTS forest cover and activies, and FTA openings, and area based tenures).
 - `fm_collect_vri()` -- Collects _Vegetation Resource Inventory_ data.  Note that different version of the VRI are available from the BCDC.  This queries the ????? dataset.
-- `fm_collect_custom_bcdc() -- Collects a user specified BCDC layer
+- `fm_collect_custom_bcdc()` -- Collects a user specified BCDC layer
 
 #### Estate planning (aka Timber Supply Review) 
 
