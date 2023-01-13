@@ -11,7 +11,7 @@
 #'
 #' @return Spatial data is saved to the output directory.  A data.frame is returned indicating what data was received.
 #'
-#' @examples#'
+#' @examples
 #' fm_collect_basemap(aoi = fm_aoi(), outdir = "./out", type = "gpkg")
 
 #' @export

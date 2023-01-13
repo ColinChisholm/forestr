@@ -23,6 +23,5 @@ interest from \href{https://catalogue.data.gov.bc.ca}{BC Data}.  This function i
 a wrapper for \code{bcdata}.
 }
 \examples{
-#'
 fm_collect_basemap(aoi = fm_aoi(), outdir = "./out", type = "gpkg")
 }
