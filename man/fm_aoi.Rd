@@ -9,7 +9,8 @@ fm_aoi(
   ymin = 49,
   xmax = -114,
   ymax = 60,
-  basemap = "GeoportailFrance.orthos"
+  basemap = "GeoportailFrance.orthos",
+  epsg = 3005
 )
 }
 \arguments{
@@ -17,7 +18,9 @@ fm_aoi(
 
 \item{ymin, ymax}{latitude minimum and maximum extents in degrees (negative for south)}
 
-\item{basemap}{a Leaflet basemap}
+\item{basemap}{a Leaflet basemap. Default is . Other providers include: \code{CartoDB.Positron}, \code{Esri.WorldImagery}, \code{Esri.DeLorme}}
+
+\item{epsg}{EPSG code for returned projection information.  Defaults to BC Albers (epsg 3005)}
 }
 \value{
 Returns an sf object.
@@ -26,7 +29,7 @@ Returns an sf object.
 Creates an area of interest interactively.  Simply call the function
 }
 \examples{
-aoi <- fm_aoi(xmin = -139, ymin = 49, xmax = -114, ymax = 60)
+aoi <- fm_aoi(xmin = -139, ymin = 49, xmax = -114, ymax = 60, epsg = 3005)
 
 
 }

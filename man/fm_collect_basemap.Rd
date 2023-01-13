@@ -2,9 +2,9 @@
 % Please edit documentation in R/fm_collect_basemap.R
 \name{fm_collect_basemap}
 \alias{fm_collect_basemap}
-\title{Collect Basemap Data from BC}
+\title{Collect  Data from BC}
 \usage{
-fm_collect_basemap(aoi, outdir = "./out", type = "gpkg")
+fm_collect_basemap(aoi, outdir = "./out", type = "geojson")
 }
 \arguments{
 \item{aoi}{A \code{sf} polygon.}
@@ -23,5 +23,6 @@ interest from \href{https://catalogue.data.gov.bc.ca}{BC Data}.  This function i
 a wrapper for \code{bcdata}.
 }
 \examples{
-fm_collect_basemap(aoi = fm_aoi(), outdir = "./out", type = "gpkg")
+fm_collect_basemap(aoi = fm_aoi(), outdir = "./out", type = "geojson")
+fm_collect_
 }
