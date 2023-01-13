@@ -19,19 +19,31 @@
 
 fm_collect_basemap <- function(aoi, outdir = "./out", type = "geojson") {
   
+  layers <- forestr:::baselayers ## internal data
+  fm_collect_list(aoi, outdir, type, layers)
+  
+}
+
+
+
+
+## -----------------------------------------------------------------------------
+
+fm_collect_list <- function(aoi, outdir, type, layers) {
+  
   if(!exists(outdir)) {dir.create(outdir, recursive = TRUE)}
   
   layers <- forestr:::baselayers ## internal data
   
   layers$Received <- as.logical(NA)
-
+  
   for (i in 1:nrow(layers)) {
     lname <- layers$Name[i]
     lBCID <- layers$BCID[i]
     
     layers$Received[i] <- fm_collect(aoi, outdir, type, lname, lBCID)
   }
-
+  
   return(layers)
 }
 
