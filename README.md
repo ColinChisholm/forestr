@@ -5,7 +5,7 @@ _The project is in the very early stages of development. The codebase will be ch
 Operational and Strategic Forest Planning tools. 
 
 ## Installation 
-`remotes::install_github("cchisholm/Forest-Management-Tools")`
+`remotes::install_github("cchisholm/forestr")`
 
 
 ## Documentation 
