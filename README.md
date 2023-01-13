@@ -49,6 +49,7 @@ These tools are highly dependent on the [`bcdata` package](https://github.com/bc
 
 - `fm_tile_raster()` -- large raster data can be difficult to use.  This function creates a spatial polygons that can be used to tile the input raster (e.g. facilitate loading smaller portions of a large raster.
 - `fm_sample_polygon()` -- creates a sampling plan for a polygon.
+- `fm_zonal_stats()`  -- Zonal statistics of raster values in a polygon.
 
 ***
 
