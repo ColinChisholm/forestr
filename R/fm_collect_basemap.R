@@ -18,48 +18,48 @@
 
 
 fm_collect_basemap <- function(aoi, outdir = "./out", type = "geojson") {
-
-  layers <- forestr:::baselayers
-
-  layers <- fm_collect(aoi, outdir, type, layers)
-
-  return(layers)
-}
-
-
-
-fm_collect <- function(aoi, outdir, type, layers) {
+  
+  if(!exists(outdir)) {dir.create(outdir, recursive = TRUE)}
+  
+  layers <- forestr:::baselayers ## internal data
+  
   layers$Received <- as.logical(NA)
 
-  if(!exists(outdir)) {dir.create(outdir, recursive = TRUE)}
-
-
-  ## Collect the data
   for (i in 1:nrow(layers)) {
-    # i <- 1
-    # print(layers)
-    print(layers$Name[i])
-
-    ## collect the data
-    dat <- bcdata::bcdc_query_geodata(layers$BCID[i], crs = 3005) %>%
-      bcdata::filter(bcdata::INTERSECTS(aoi)) %>%
-      bcdata::collect() %>%
-      {if(nrow(.) > 0) sf::st_intersection(., aoi) else .}
-
-    if (nrow(dat) == 0) {
-      print(paste0("No ", Basemap_dict[i], " features in the area of interest."))
-      layers$Recevied[i] <- FALSE
-    } else{
-
-
-      sf::st_write(dat,
-                   dsn = paste0(outdir, layers$Name[i], ".", type),
-                   layer = layers$Name[i],
-                   delete_dsn = TRUE)
-      layers$Recevied[i] <- TRUE
-    }
+    lname <- layers$Name[i]
+    lBCID <- layers$BCID[i]
+    
+    layers$Received[i] <- fm_collect(aoi, outdir, type, lname, lBCID)
   }
+
   return(layers)
 }
+
+
+
+fm_collect <- function(aoi, outdir, type, lname, lBCID) {
+  
+  print(paste("Retrieving: ", lname))
+
+  ## collect the data
+  dat <- bcdata::bcdc_query_geodata(lBCID, crs = 3005) %>%
+    bcdata::filter(bcdata::INTERSECTS(aoi)) %>%
+    bcdata::collect() %>%
+    {if(nrow(.) > 0) sf::st_intersection(., aoi) else .}
+
+  if (nrow(dat) == 0) {
+    print(paste0("No ", lname, " features in the area of interest."))
+    return(FALSE)
+  } else{
+
+    sf::st_write(dat,
+                 dsn = paste0(outdir, lname, ".", type),
+                 layer = lname,
+                 delete_dsn = TRUE)
+    return(TRUE)
+  }
+}
+
+
 
 
