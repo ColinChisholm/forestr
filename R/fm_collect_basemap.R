@@ -19,7 +19,7 @@
 
 fm_collect_basemap <- function(aoi, outdir = "./out", type = "geojson") {
 
-  layers <- forestmanager:::baselayers
+  layers <- forestr:::baselayers
 
   layers <- fm_collect(aoi, outdir, type, layers)
 
