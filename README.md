@@ -2,7 +2,7 @@
 _The project is in the very early stages of development. The codebase will be changing frequently.  Currently this scripts below are aspirational ... so don't count on them being there.  I list them because I want them, and I have some code that can be adapted to this package. One day they will all be here._ 
 
 # Forest Management Tools
-Operational and Strategic Forest Planning tools. 
+Operational and Strategic Forest Planning tools (in development).
 
 ## Installation 
 `remotes::install_github("cchisholm/forestr")`
