@@ -2,8 +2,8 @@
 
 # Forest Management Tools
 
-=======
-Operational and Strategic Forest Planning tools (in development).
+
+## Operational and Strategic Forest Planning tools (in development).
 
 ## Installation
 
