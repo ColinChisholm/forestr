@@ -1,7 +1,7 @@
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](Redirect-URL) *The project is in the very early stages of development. The codebase will be changing frequently. Currently this scripts below are aspirational ... so don't count on them being there. I list them because I want them, and I have some code that can be adapted to this package. One day they will all be here.*
 
 # Forest Management Tools
-<<<<<<< HEAD
+
 =======
 Operational and Strategic Forest Planning tools (in development).
 
