@@ -1,0 +1,185 @@
+---
+title: "Active Items in FTA"  
+# subtitle:  "Intended for RESULTS data collection <br> -- from license ID to collection --"
+author: "Colin Chisholm RPF, MSc"
+date:  2025-03-10
+date-modified: today
+format: 
+  html:
+    toc: true
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+editor_options: 
+  chunk_output_type: console
+execute: 
+  echo: true
+  warning: false
+  message: false
+  error: false
+  freeze: false
+  eval: true
+---
+  
+This project was initiated in discussion with Derek Belsham who is updated RESULTS database submission for the ALRF.
+
+Updated to focus on the ALRF -- for the purpose of reviewing blocks in and around the research forest. 
+
+
+## Load required libraries
+
+```{r}
+#| results: hold
+
+library(dplyr)   ## dataframe manipulations 
+library(sf)      ## spatial data manipulation
+library(bcdata)  ## access BC Data Catalogue
+library(mapview) ## display
+```
+
+
+## Collect Area of interest 
+
+Specifically the woodlot is an area based tenure.  The BCDC _Forest Tenure Managed Licence_ layer is queried using the Woodlot's licence ID
+```{r}
+## Forest Tenure Managed Licence
+# bcdata::bcdc_search("forest tenure managed licence")
+aoi <- "~/data/GIS/ALRF/_MostRequested_/ALRF Boundary/Boundary_NoPark/Boundary_NoPark.shp"
+aoi <- st_read(aoi, quiet=TRUE)
+aoi <- aoi %>% st_transform(3005)
+# ten <- "c3e96239-cdc9-4328-ac19-58fba1623ef8"
+# bcdc_describe_feature(ten)
+
+# dat_ten <- bcdc_query_geodata(ten, crs = 3005) %>%  ## use EPSG 3005 (i.e. BC Albers)
+#   bcdata::filter(FOREST_FILE_ID == WL) %>%     ## Filter the query -- must match license ID
+#   collect()                                         ## Collect the data 
+# 
+
+```
+
+
+```{r}
+#| fig-cap: "The Aleza Lake Research Forest with a 10km buffer area for investigation.  Note that Ecological Reserve 84 has been ignored"
+#| fig-column: page-right
+aoi_buf <- st_buffer(aoi, 10000)
+aoi_lin <- aoi %>% st_cast("MULTILINESTRING") %>% st_as_sf()
+
+mapview::mapview(list(aoi_buf, aoi_lin),
+                 color = list(NA, "red"))
+
+```
+
+<!-- ## FOM -->
+
+<!-- Can I access [Forest Operations Map](https://www2.gov.bc.ca/gov/content/environment/natural-resource-stewardship/laws-policies-standards-guidance/legislation-regulation/forest-range-practices-act/frpa-improvement-initiative/forest-operations-map) -->
+
+<!-- ```{r} -->
+<!-- bcdc_search("Forest Operations Map") -->
+
+<!-- # 1: Forest Operations Map (FOM) - Cutblocks (multiple) -->
+<!-- #  ID:  -->
+<!-- fom <- "7dda4615-5d32-427e-a303-1dcdb90a6fea" -->
+<!-- #  Name: forest-operations-map-fom-cutblocks -->
+<!-- # 2: Forest Operations Map (FOM) - Road Sections (multiple) -->
+<!-- #  ID: f7d00bd1-d7a4-4d20-91f3-1a641e4af81b -->
+<!-- #  Name: forest-operations-map-fom-road-sections -->
+<!-- # 3: Forest Operations Map (FOM) - Wildlife Tree Retention Areas (multiple) -->
+<!-- #  ID: aded2912-86eb-4143-a16a-0459b293eba5 -->
+<!-- #  Name: forest-operations-map-fom-wildlife-tree-retention-areas -->
+<!-- # 4: Forest Licensee Operating Areas (multiple, wms, kml) -->
+<!-- #  ID: 5a18c401-7c99-48fe-8a1a-b4597072d8b6 -->
+
+<!-- dat_fom <- bcdc_query_geodata(fom, crs = 3005) %>%  ## use EPSG 3005 (i.e. BC Albers) -->
+<!--   # bcdata::filter(FOREST_FILE_ID == WL) %>%     ## Filter the query -- must match license ID -->
+<!--   bcdata::filter(INTERSECTS(aoi_buf)) %>%         ## Filter the query -- must intersect aoi -->
+<!--   collect()     -->
+
+
+<!-- ``` -->
+
+
+
+
+## Collect FTA Permitting Polygons 
+
+```{r}
+#| fig-cap: "Active FTA polygons (ie no harvest date)."
+#| fig-column: page-right
+
+
+# ften <- "cff7b8f7-6897-444f-8c53-4bb93c7e9f8b" ## License permit 
+# ften <- "214e60a2-4f1a-4a68-8494-b8a935b6551b" ## Licence permit 
+# ften <- "4876fb83-ce33-4cf8-9c13-7fdeb2f39cf6" ## NOPE 
+# ften <- "8ec88f64-24b4-4301-861b-4d0d3f3e2c17" ## NOPE
+
+## https://catalogue.data.gov.bc.ca/dataset/forest-tenure-cutblock-polygons-fta-4-0
+ften <- "dfb8b498-fa4b-4286-b3ec-58db88aca1cf" ## YES!!! 
+
+
+dat_fta <- bcdc_query_geodata(ften, crs = 3005) %>%  ## use EPSG 3005 (i.e. BC Albers)
+  # bcdata::filter(FOREST_FILE_ID == WL) %>%     ## Filter the query -- must match license ID
+  bcdata::filter(INTERSECTS(aoi_buf)) %>%         ## Filter the query -- must intersect aoi
+  collect()    
+
+dat_new <- dat_fta %>% 
+  dplyr::filter(is.na(DISTURBANCE_END_DATE))
+
+mapview::mapview(dat_new, zcol="CLIENT_NAME")
+
+```
+
+
+<!-- END HERE  -->
+<!-- STANDARD UNIT and FOREST COVER is collected below -->
+
+
+<!-- ## Collect RESULTS SU and Forest Cover Data -->
+
+<!-- ```{r} -->
+<!-- ## RESULTS Standard Units  -->
+<!-- ## code: 31329e23-5442-4b46-ab12-2d4b8393561c -->
+<!-- SUs <- "31329e23-5442-4b46-ab12-2d4b8393561c" -->
+<!-- # bcdc_get_record(SUs) -->
+
+<!-- ## Forest Cover -- Silv Layer -->
+<!-- ## code: 258bb088-4113-47b1-b568-ce20bd64e3e3 -->
+<!-- FC <- "258bb088-4113-47b1-b568-ce20bd64e3e3" -->
+
+
+<!-- dat_SU <- bcdc_query_geodata(SUs, crs = 3005) %>% ## use EPSG 3005 (i.e. BC Albers) -->
+<!--   bcdata::filter(INTERSECTS(dat_ten)) %>%         ## Filter the query -- must intersect aoi -->
+<!--   collect()                                       ## Collect the data  -->
+
+<!-- dat_fc <- bcdc_query_geodata(FC, crs = 3005) %>%  ## use EPSG 3005 (i.e. BC Albers) -->
+<!--   bcdata::filter(INTERSECTS(dat_ten)) %>%         ## Filter the query -- must intersect aoi -->
+<!--   collect()                                       ## Collect the data  -->
+
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| fig-cap: "Standard Unit Polygons" -->
+
+<!-- dat_SU$OPENING_ID <- factor(dat_SU$OPENING_ID) -->
+<!-- plot(dat_SU["OPENING_ID"]) -->
+<!-- ``` -->
+
+<!-- ## Export the data -->
+
+<!-- ```{r} -->
+<!-- if (!dir.exists("output")) {dir.create("./output")} ## create ouput dir  -->
+
+<!-- ## save the data  -->
+<!-- st_write(dat_ten, paste0("./output/", WL, "_license.gpkg"), append = F) -->
+<!-- st_write(dat_fta, paste0("./output/", WL, "_fta.gpkg"), append = F) -->
+<!-- st_write(dat_SU, paste0("./output/", WL, "_SUs.gpkg"), append = F) -->
+<!-- st_write(dat_fc, paste0("./output/", WL, "_FC.gpkg"), append = F) -->
+
+
+<!-- list.files("./output", pattern = "gpkg") -->
+<!-- ``` -->
+
+
+
+
+

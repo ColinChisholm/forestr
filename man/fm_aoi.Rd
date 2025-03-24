@@ -4,21 +4,12 @@
 \alias{fm_aoi}
 \title{Create an area of interest}
 \usage{
-fm_aoi(
-  xmin = -139,
-  ymin = 49,
-  xmax = -114,
-  ymax = 60,
-  basemap = "GeoportailFrance.orthos",
-  epsg = 3005
-)
+fm_aoi(extent = bc, basemap = "Esri.WorldImagery", epsg = 3005)
 }
 \arguments{
-\item{xmin, xmax}{longitude minimum and maximum extents (negative for west)}
+\item{extent}{An sf object to define the extent}
 
-\item{ymin, ymax}{latitude minimum and maximum extents in degrees (negative for south)}
-
-\item{basemap}{a Leaflet basemap. Default is . Other providers include: \code{CartoDB.Positron}, \code{Esri.WorldImagery}, \code{Esri.DeLorme}}
+\item{basemap}{a Leaflet basemap. Default is . Other providers include: \code{CartoDB.Positron}, \code{Esri.WorldImagery}, \code{Esri.DeLorme}.  See also: https://leaflet-extras.github.io/leaflet-providers/preview/}
 
 \item{epsg}{EPSG code for returned projection information.  Defaults to BC Albers (epsg 3005)}
 }
@@ -29,7 +20,7 @@ Returns an sf object.
 Creates an area of interest interactively.  Simply call the function
 }
 \examples{
-aoi <- fm_aoi(xmin = -139, ymin = 49, xmax = -114, ymax = 60, epsg = 3005)
+aoi <- fm_aoi(extent = bc, epsg = 3005)
 
 
 }

@@ -2,30 +2,28 @@
 #'
 #' Creates an area of interest interactively.  Simply call the function
 #'
-#' @param xmin,xmax longitude minimum and maximum extents (negative for west)
-#' @param ymin,ymax latitude minimum and maximum extents in degrees (negative for south)
-#' @param basemap a Leaflet basemap. Default is . Other providers include: `CartoDB.Positron`, `Esri.WorldImagery`, `Esri.DeLorme`
+#' @param extent An sf object to define the extent
+#' @param basemap a Leaflet basemap. Default is . Other providers include: `CartoDB.Positron`, `Esri.WorldImagery`, `Esri.DeLorme`.  See also: https://leaflet-extras.github.io/leaflet-providers/preview/
 #' @param epsg EPSG code for returned projection information.  Defaults to BC Albers (epsg 3005)
 #'
 #' @return Returns an sf object.
 #'
 #'
 #' @examples
-#'aoi <- fm_aoi(xmin = -139, ymin = 49, xmax = -114, ymax = 60, epsg = 3005)
+#' aoi <- fm_aoi(extent = bc, epsg = 3005)
 #'
 #'
 #' @export
 
-fm_aoi <- function(xmin = -139, ymin = 49, xmax = -114, ymax = 60,
-                 basemap = "GeoportailFrance.orthos",
+fm_aoi <- function(extent = bc,
+                 basemap = "Esri.WorldImagery",
                  epsg = 3005) {
 
-  d <- leaflet::leaflet() %>%
-    leaflet::fitBounds(xmin, ymin,  xmax, ymax, options = list()) %>%     ## set to extent of BC
-    leaflet::addProviderTiles(basemap) %>%
+  aoi <- mapview(bc, hide = T,
+                 map.types = c(basemap, "Esri.NatGeoWorldMap" ,"OpenStreetMap.DE")) %>% 
     mapedit::editMap()
-
-  aoi <- sf::st_transform(d$finished, epsg)
+  
+  aoi <- sf::st_transform(aoi$finished, epsg)
   return(aoi)
 }
 
