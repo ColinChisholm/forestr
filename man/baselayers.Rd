@@ -8,12 +8,12 @@
 An object of class \code{data.frame} with 8 rows and 2 columns.
 }
 \source{
-Data layers from the BC Data Catalog.  see the package "bcdata"
+Data layers from the BC Data Catalog.  See the package "bcdata"
 }
 \usage{
 baselayers
 }
 \description{
-A dataframe of BC Data Catalogue layers to queried.  Includes a human readable name and the BC Data ID.
+A dataframe BC Data Catalog layers to queried https://catalogue.data.gov.bc.ca/.  Includes a human readable name and the BC Data ID.
 }
 \keyword{datasets}

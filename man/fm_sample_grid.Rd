@@ -4,17 +4,17 @@
 \alias{fm_sample_grid}
 \title{Create a sample plan}
 \usage{
-fm_sample_grid(input, spacing)
+fm_sample_grid(input, spacing = 100)
 }
 \arguments{
 \item{input}{a \code{sf} polygon or multi-polygon object.}
 
+\item{spacing}{An integer specifying how many units to place points apart from one another (e.g. 100 metres)
+Only to be used with \code{"grid"} method.  It is recommended to use a \code{utm} based projection.}
+
 \item{method}{Options include: \code{grid} (specified grid distance), \code{regular} (regularly spaced on a grid based on the desired number of plots), or \code{random} if a \code{min_dis} is specified the points are generated based on a grid of that distance.}
 
 \item{n}{An integer specifying how many sample points to create.}
-
-\item{grid}{An integer specifying how many units to place points apart from one another.
-Only to be used with \code{"grid"} method.  It is recommended to use a \code{utm} based projection.}
 
 \item{min_dis}{Optional, a minimum distance that random plots need to be from one another.  Using this method will cause plots to be selected off of a regular grid.}
 }

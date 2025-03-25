@@ -5,7 +5,7 @@
 #' @param input  a `sf` polygon or multi-polygon object.  
 #' @param method Options include: `grid` (specified grid distance), `regular` (regularly spaced on a grid based on the desired number of plots), or `random` if a `min_dis` is specified the points are generated based on a grid of that distance.  
 #' @param n      An integer specifying how many sample points to create.  
-#' @param grid   An integer specifying how many units to place points apart from one another.  
+#' @param spacing An integer specifying how many units to place points apart from one another (e.g. 100 metres) 
 #'               Only to be used with `"grid"` method.  It is recommended to use a `utm` based projection.
 #' @param min_dis Optional, a minimum distance that random plots need to be from one another.  Using this method will cause plots to be selected off of a regular grid.
 #' 
@@ -23,13 +23,24 @@
 #'                method = "grid")
 
 
-fm_sample_grid <- function(input, spacing) {
+fm_sample_grid <- function(input, spacing = 100) {
+  # input <- blk; spacing <- 100 ## Testing line
+  
+  input <- input %>% dplyr::select()
+  bb <- sf::st_bbox(input)
   
   grid <- sf::st_make_grid(input, spacing) ## 
-  grid <- sf::st_cast(grid, "POINT")       ## extract verticies 
+  grid <- grid %>% sf::st_cast("POINT")
   
-  grid <- sf::st_intersection(grid, input) ## only return points in the aoi
-  pts  <- sf::st_as_sf(grid)
+  dup <- grid %>% duplicated()
+  
+  grid <- grid[!dup]
+  
+  grid <- grid %>% st_as_sf()
+  # grid <- sf::st_cast(grid, "POINT")       ## extract verticies 
+  # grid <- grid %>% sf::st_as_sf(grid)
+  pts <- sf::st_intersection(grid, input) ## only return points in the aoi
+  
   return(pts)
 }
 

@@ -1,6 +1,6 @@
 Package: forestr
 Title: Forest Management Tools, Primarily for the Province of British Columbia, Canada
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Colin", "Chisholm", , "colin.chisholm@unbc.ca", role = c("aut", "cre"),
            comment = c(website = "http://chisholm.forestecosystems.ca"))
@@ -14,7 +14,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: 
-    R (>= 4.1)
+    R (>= 4.4)
 LazyData: true
 Imports: 
     bcdata,
