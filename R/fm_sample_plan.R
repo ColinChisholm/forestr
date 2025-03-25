@@ -2,6 +2,7 @@
 #' 
 #' Using an `sf` polygon a point sample plan is generated.  Options allow for a target number of sample points or a specific density of points.  Points can be located along a regular grid or placed randomly. 
 #' 
+#' 
 #' @param input  a `sf` polygon or multi-polygon object.  
 #' @param method Options include: `grid` (specified grid distance), `regular` (regularly spaced on a grid based on the desired number of plots), or `random` if a `min_dis` is specified the points are generated based on a grid of that distance.  
 #' @param n      An integer specifying how many sample points to create.  
@@ -11,14 +12,7 @@
 #' 
 #' @return Returns a point `sf` object 
 #' @examples 
-#' point   <- data.frame(lat = 53.893, long = -122.813) |> 
-#'   sf::st_as_sf(coords = c("long", "lat")) |> 
-#'   st_set_crs(4326)
-#' 
-#' aoi   <- point |> 
-#'   sf::st_transform(3005) |> 
-#'   sf::st_buffer(500)
-#' 
+#' aoi <- blk 
 #' fm_sample_plan(input = aoi,
 #'                method = "grid")
 

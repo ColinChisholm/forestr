@@ -25,14 +25,7 @@ Returns a point \code{sf} object
 Using an \code{sf} polygon a point sample plan is generated.  Options allow for a target number of sample points or a specific density of points.  Points can be located along a regular grid or placed randomly.
 }
 \examples{
-point   <- data.frame(lat = 53.893, long = -122.813) |> 
-  sf::st_as_sf(coords = c("long", "lat")) |> 
-  st_set_crs(4326)
-
-aoi   <- point |> 
-  sf::st_transform(3005) |> 
-  sf::st_buffer(500)
-
+aoi <- blk 
 fm_sample_plan(input = aoi,
                method = "grid")
 }

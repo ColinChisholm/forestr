@@ -3,6 +3,6 @@
 export("%>%")
 export(fm_aoi)
 export(fm_collect_basemap)
-export(fm_export_gpx)
 export(fm_sample_plan)
+export(fmr_cutin)
 importFrom(magrittr,"%>%")
