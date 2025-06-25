@@ -33,7 +33,7 @@ These tools are highly dependent on the [`bcdata` package](https://github.com/bc
 
 #### Basemap aquisition
 
--   `fm_collect_basemap()` -- Collects essential data from the BC Data Center (BCDC) including: water and transportation features. Also provides a QGIS map
+-   `fm_collect_basemap()` -- Collects essential data from the BC Data Center (BCDC) including: water and transportation features. Pending: provide a QGIS map file.
 -   `fm_collect_forest_layers()` -- Collects BCDC forest management layers (e.g. historical RESULTS forest cover and activies, and FTA openings, and area based tenures).
 -   `fm_collect_vri()` -- Collects *Vegetation Resource Inventory* data. Note that different version of the VRI are available from the BCDC. This queries the ????? dataset.
 -   `fm_collect_custom_bcdc()` -- Collects a user specified BCDC layer
@@ -45,9 +45,9 @@ These tools are highly dependent on the [`bcdata` package](https://github.com/bc
 
 ### Other utilities
 
--   `fm_tile_raster()` -- large raster data can be difficult to use. This function creates a set pf spatial polygons that can be used to tile the input raster (e.g. facilitate loading smaller portions of a large raster.
+-   `fm_tile_raster()` -- large raster data can be difficult to use. This function creates a set pf spatial polygons that can be used to tile the input raster (e.g. facilitate loading smaller portions of a large raster).
 -   `fm_sample_plan()` -- creates a sampling plan for regular grid, regularly placed, or randomly placed survey/sample points in a polygon.
--   `fm_zonal_stats()` -- Zonal statistics of raster values in a polygon.
+-   `fm_zonal_stats()` -- Zonal statistics of raster values within a specified in a polygon.
 
 ------------------------------------------------------------------------
 
