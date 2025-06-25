@@ -6,7 +6,7 @@
 
 ## Installation
 
-`remotes::install_github("colinchisholm/forestr")`
+`remotes::install_github("ColinChisholm/forestr")`
 
 ## Documentation
 
