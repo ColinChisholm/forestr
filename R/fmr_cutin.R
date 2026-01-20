@@ -3,7 +3,7 @@
 #' Utility for creating a resultant file.  Cut in a new feature and apply attributes
 #'
 #' @param rb sf polygon layer -- the current resultant build.  Generally this starts with a forest inventory layer to which new layers are cut in.
-#' @param nf sf polygon of a _new feature_ to be added to the resultant.   
+#' @param newf sf polygon of a _new feature_ to be added to the resultant.   
 #' @param nfid a character string. Name of the feature.  Creates an new field/ column in the output resultant layer.
 #' @param nfat Attribute to be populated under nfid.  Field name from `nf`, character string, default is `TRUE`
 #'
@@ -19,14 +19,14 @@
 fmr_cutin <- function(rb,
                       newf,
                       nfid,
-                      nfat = NULL) {
+                      nfat = T) {
   ## add test that the features overlap
   
   ## test set up 
   # rb <- aleza
-  # newf <- blk 
+  # newf <- blk
   # nfid <- "Block"
-  # nfat <- "Block"
+  # nfat <- NULL
   # 
   # 
   ## maintain or create attributes

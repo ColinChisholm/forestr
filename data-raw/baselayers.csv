@@ -1,9 +1,11 @@
-"Name","BCID"
-"Rails","WHSE_BASEMAPPING.GBA_RAILWAY_TRACKS_SP"
-"Roads","digital-road-atlas-dra-master-partially-attributed-roads"
-"Water-Coastline","freshwater-atlas-coastlines"
-"Water-Lakes","freshwater-atlas-lakes"
-"Water-Islands","freshwater-atlas-islands"
-"Water-Rivers","freshwater-atlas-rivers"
-"Water-Streams","freshwater-atlas-stream-network"
-"Water-Wetlands","freshwater-atlas-wetlands"
+Name,BCID,Description,Query
+Rails,WHSE_BASEMAPPING.GBA_RAILWAY_TRACKS_SP,,baselayers
+Roads,digital-road-atlas-dra-master-partially-attributed-roads,,baselayers
+Water-Coastline,freshwater-atlas-coastlines,,baselayers
+Water-Lakes,freshwater-atlas-lakes,,baselayers
+Water-Islands,freshwater-atlas-islands,,baselayers
+Water-Rivers,freshwater-atlas-rivers,,baselayers
+Water-Streams,freshwater-atlas-stream-network,,baselayers
+Water-Wetlands,freshwater-atlas-wetlands,,baselayers
+FTA,dfb8b498-fa4b-4286-b3ec-58db88aca1cf,Forest Tenure Cutblock Polygons (FTA 4.0),forestry
+,c3e96239-cdc9-4328-ac19-58fba1623ef8,,

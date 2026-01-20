@@ -4,16 +4,16 @@
 \alias{fmr_cutin}
 \title{Cut feature in}
 \usage{
-fmr_cutin(rb, newf, nfid, nfat = NULL)
+fmr_cutin(rb, newf, nfid, nfat = T)
 }
 \arguments{
 \item{rb}{sf polygon layer -- the current resultant build.  Generally this starts with a forest inventory layer to which new layers are cut in.}
 
+\item{newf}{sf polygon of a \emph{new feature} to be added to the resultant.}
+
 \item{nfid}{a character string. Name of the feature.  Creates an new field/ column in the output resultant layer.}
 
 \item{nfat}{Attribute to be populated under nfid.  Field name from \code{nf}, character string, default is \code{TRUE}}
-
-\item{nf}{sf polygon of a \emph{new feature} to be added to the resultant.}
 }
 \value{
 Returns an sf object.
