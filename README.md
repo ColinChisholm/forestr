@@ -41,7 +41,7 @@ These tools are highly dependent on the [`bcdata` package](https://github.com/bc
 #### Estate planning (aka Timber Supply Review)
 
 -   `fm_collect_aoi_overlap()` -- Intended for use with a *Frontcounter BC: Area of Interest Evaluation Report* (see: [Frontcounter BC](frontcounterbc.gov.bc.ca)). Collects much of the data that overlaps the area of interest. _Functional_.
--   `fm_resultant()` -- cuts new data into a resultant (e.g. Visual Quality Objective polygon becomes a attribute in the resultant). _Review/Testing_
+-   `fmr_cutin()` -- cuts new data into a resultant (e.g. Visual Quality Objective polygon becomes a attribute in the resultant). _Testing_
 
 ### Other utilities
 
