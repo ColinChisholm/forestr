@@ -23,10 +23,25 @@ fmr_cutin <- function(rb,
   ## add test that the features overlap
   
   ## test set up 
+  # library(forestr)
+  
+  # core <- "~/workspace/2026/ALRF/TSR/data/ALRF_CORE.gpkg"
+  # # st_layers(core)
+  # vri <- st_read("~/workspace/2026/ALRF/TSR/data/2026-01-14_vri-updated.gpkg")
+  # ogma <- st_read(core, "OGMA", quiet = T)
+  # ogma <- st_transform(ogma, st_crs(vri))
+  # 
+  # rslt <- fmr_cutin(vri, ogma, "OGMA", T)
+  # 
+  # rb <- vri
+  # newf <- ogma
+  # nfid <- "OGMA"
+  # nfat <- T
+  # 
   # rb <- aleza
   # newf <- blk
   # nfid <- "Block"
-  # nfat <- NULL
+  # nfat <- N
   # 
   # 
   ## maintain or create attributes
@@ -45,7 +60,7 @@ fmr_cutin <- function(rb,
   
   ## FIX geometry naming #######################
   if (attr(rb, "sf_column") != "geometry") {
-    rb <- rename_geometry(rn, "geometry")
+    rb <- rename_geometry(rb, "geometry")
   }
   
   if (attr(newf, "sf_column") != "geometry") {
