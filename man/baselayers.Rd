@@ -5,7 +5,7 @@
 \alias{baselayers}
 \title{Baselayers}
 \format{
-An object of class \code{data.frame} with 8 rows and 2 columns.
+An object of class \code{data.frame} with 10 rows and 4 columns.
 }
 \source{
 Data layers from the BC Data Catalog.  See the package "bcdata"
