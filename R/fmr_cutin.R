@@ -38,11 +38,11 @@ fmr_cutin <- function(rb,
   # nfid <- "OGMA"
   # nfat <- T
   # 
-  # rb <- aleza
-  # newf <- blk
-  # nfid <- "Block"
-  # nfat <- N
-  # 
+  # rb <- rslt
+  # newf <- dat
+  # nfid <- "t2"
+  # nfat <- T
+  # # 
   # 
   ## maintain or create attributes
   if (nfat %in% names(newf)) {
@@ -50,10 +50,15 @@ fmr_cutin <- function(rb,
   } else {
     newf <- newf %>% dplyr::select() 
     newf[nfid] <- nfat
+    # newf <- st_as_sf(newf)
   }
   
   ## copy rb data in new feature 
+  # newf <- st_union(newf) %>% sf::st_intersection(st_union(rb))
   newf <- newf %>% sf::st_intersection(rb)
+  # newf <- st_set_geometry(newf, "POLYGON")
+  
+  
   
   ## cut out new feature geometry from rb
   rb <- rb %>% sf::st_difference(sf::st_union(newf))
